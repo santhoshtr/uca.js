@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+	<meta charset="UTF-8" />
+	<title>TableSorter with Unicode collation algorithm</title>
+	<link rel="stylesheet" href="style.css" type="text/css" media="print, projection, screen" />
+	<script type="text/javascript" src="ml.js"></script>
+	<script type="text/javascript" src="uca.js"></script>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="jquery.tablesorter.js"></script>
+	<script type="text/javascript" id="js">
+	// add parser through the tablesorter addParser method
+	$.tablesorter.addParser({
+		// set a unique id
+		id: 'uca',
+		is: function(s) {
+			// return false so this parser is not auto detected
+			return false;
+		},
+		format: function(s) {
+			return sort_key(s);
+		},
+		type: 'text'
+	});
+	
+	$(function() {
+		$("table").tablesorter({
+			headers: {
+				2: {
+					sorter:'uca'
+				}
+			}
+		});
+	}); 				
+	</script>
+</head>
+<body>
+<div id="main">
+	<h1>Demo</h1>
+	<div id="demo">
+	<table  cellspacing="1" class="tablesorter">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>പേരു്(Native)</th>
+				<th>പേരു്(UCA)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Student01</td>
+				<td>റഹ്മാന്‍</td>
+				<td>റഹ്മാന്‍</td>
+			</tr>
+			<tr>
+				<td>Student02</td>
+				<td>സന്തോഷ്</td>
+				<td>സന്തോഷ്</td>
+			</tr>
+			<tr>
+				<td>Student03</td>
+				<td>രാജന്‍</td>
+				<td>രാജന്‍</td>
+			</tr>
+			<tr>
+				<td>Student04</td>
+				<td>amir</td>
+				<td>amir</td>
+			</tr>
+			<tr>
+				<td>Student05</td>
+				<td>santhosh</td>
+				<td>santhosh</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+</body>
+</html>
+
